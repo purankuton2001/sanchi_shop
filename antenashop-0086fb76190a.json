@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "antenashop",
+  "private_key_id": "0086fb76190a75b2b874fa8ebbda6b93ce94ba46",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCu09J2yQ3r5zzm\nIEeu5jDVJCctpe+wFuvwCviVjzncvBmX8nUFvbWgELr5lSU2nmCLSmc16Gt/+7tD\nSYN0MYh/9+DWNT644LOZMBg14me1dPOeebWVfdrbPXzHpedgTkp+0XM+8hcMq0er\niWaKkvXRLaGUo40gigrk6dBfsjo5wJSQCoy7QvFyBkSKeahKciwaBwuOds7KLBmw\nSD50VzVBnBHiCTunrCEDA7IsT0UxeqMBtbRL4ZXHDxTZxktOSiTufvOTBcq3pq6b\nJ5iOxm1kcDFkGMqjRIF6NlwRo6UdYdfrlLS7dzB4SvlCRwGOp/i5+hYzglNPn5MK\nqqbnqoa9AgMBAAECggEAG9ptDVY+ZM9wPSS27vdHH+oU4NmvTIF2YQXKcX+CYzfH\npxTujnXZTjFkLJfVuDQ24vI9a9IF8HvBa7i2XAh5PBQYquAMSGWqT3VhYhJaXgdO\nOfkflDvbJrNO4jr9GDOY/Efv4b8tq2vNbReksd60kblApT8CYMUFc8+JjnmFe8Y+\nPYmXcQgRUl0Tj2a/UahbSg81Bn8CXHmwL6Z12mapvErey7686Vee4OMUv3e+LZd9\nQw+TsbZSwqQwUKu7e7wr+uJPRTS5F8ywQ3zjA46HZBVf2Sq+bLBdZr64kTD1znko\nHcEy14PF1siBcj5xdK/geaSU5iPbKN0XfPUnr5GmaQKBgQDs4bWLGX43wC3lFdle\ngghaM47zR2CGIQ61ky3T0cXFyHr4eQKg02ZmkGGv1fUobgTOQRZg8F8hLi27bKwC\n7ZryPQFf6ZmrpkvzzeoAZk6yAry2FH6ohGUho1UVTNazql8ZQA3a8kQZO+g6qkyE\nk0iGkauB/Gn/4aeRqRWk4wI2NQKBgQC87/1XoFJYganW3ZY8i59ZtuRKklg5BLae\njO1ELPRG5yIp48ZoBpB9r3517UedsKgqDL++ngIrzb+uTJWWN6lmfIx8dg0GzOe2\nrBag/fucND59KsxQQ+/Xm5eV7X5uFSyxcdWAprGQpfiDmM8EzyiSAxyOB/1LHmBx\nrEwt6yZ/aQKBgGDfGO/ul/hSpjImEkOc56+DoDUK/oU7pZlJvBcAlWGB0BAm5JVC\nfoD5EIno9J35CAwVAALaqfyWtusL0PhNlOz1V8eSb16L3kmw7r4FGK+hgOzxSq69\nneH4uoXAa5kD1mosEL52DrVHE3xSQoKA/MrTbZD12Z9j97QQsqJAl5n1AoGAFX64\nM9/pfmhCCk/rZ7f6yRolntZHczU2EZO26qqyn95r5JglWnBkv+fXW1NDco1GlIIe\nznDrjlA6HnpYCl8Kxr4kvYQwtzVYp0+sw2Qh3AOVmGfmFruj7cOl20jJuXxvOUDa\nKWjNisdXHqGj68gltXblKMN/7avnDQetIww9tQECgYEAi8y8v2KzBu7a8M9BSoqz\nCxYCweedm9PQV9C9t7QoefMpouitO7mCA3eP8Mf74rBv7hK9CJP8RZSMWatyuXh9\n0nAvFk2bXD9Md9PG7xZDqhhf4uU+DD2xvFc1DGy/FfgUv6miEI1Kus2XMF26CjHJ\nHB5Hq5Qz0TgGzYHMlktUQto=\n-----END PRIVATE KEY-----\n",
+  "client_email": "test-137@antenashop.iam.gserviceaccount.com",
+  "client_id": "115222767622954940006",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/test-137%40antenashop.iam.gserviceaccount.com"
+}
