@@ -9,7 +9,7 @@ def channel_observer(window):
         val_decoded = int(repr(val_arduino.decode())[1:-5])
         print(val_decoded)
         if val_decoded == 1:
-            window.load_url('https://www.youtube.com/')
+            window.load_url('https://www.youtube.com/embed/xxCzQ4ampo4?rel=0')
         elif val_decoded == 2:
             window.load_url('https://www.google.com/')
         else:
