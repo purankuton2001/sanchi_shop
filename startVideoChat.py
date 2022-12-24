@@ -11,6 +11,7 @@ import google.auth
 
 import time
 import webview
+import channelObserver
 
 
 
@@ -57,7 +58,7 @@ bot_api = LineBotApi(api['line_access_token'])  # インスタンス化
 
 
 
-def start_video_chat():
+def start_video_chat(window):
     start_time = datetime.datetime.now() + datetime.timedelta(hours=-9)
     event = service.events().insert(calendarId=calendar_id, body=body, conferenceDataVersion=1).execute()
     # meeting = client.meetings.create_meeting('Auto created 1', start_time=start_time.isoformat(), duration_min=60,
@@ -65,11 +66,5 @@ def start_video_chat():
     user_id = api['line_userid']  # IDを取得
     messages = TextSendMessage(text=event['hangoutLink'])  # LINEに送付するメッセージ
     bot_api.multicast([user_id], messages=messages)
-    window = webview.create_window(
-        title='Youtube',
-        url=event['hangoutLink'],
-        resizable=False,
-        text_select=False,
-        confirm_close=True
-    )
-    webview.start()
+    window.load_url(event['hangoutLink'])
+
