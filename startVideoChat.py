@@ -12,8 +12,6 @@ import google.auth
 import time
 import webview
 
-
-
 with open('secret.json', 'r') as f:
     api = json.load(f)
 
@@ -54,7 +52,6 @@ body = {
 client = ZoomClient(api["zoom_api_key"], api["zoom_api_secret"])
 
 bot_api = LineBotApi(api['line_access_token'])  # インスタンス化
-
 
 
 def start_video_chat():
