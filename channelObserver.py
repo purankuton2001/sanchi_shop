@@ -2,8 +2,7 @@ import serial
 import startVideoChat
 
 def channel_observer(window):
-
-    ser = serial.Serial('COM3', 9600, timeout=None)
+    ser = serial.Serial('COM7', 9600, timeout=None)
     while True:
         val_arduino = ser.readline()
         val_decoded = int(repr(val_arduino.decode())[1:-5])

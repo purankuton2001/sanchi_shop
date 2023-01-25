@@ -19,7 +19,7 @@ with open('secret.json', 'r') as f:
     api = json.load(f)
 
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-calendar_id = 'purankuton@meta-earth-wave.art'
+calendar_id = 'purankutonacount@gmail.com'
 # Googleの認証情報をファイルから読み込む
 credentials = google.auth.load_credentials_from_file('antenashop-0086fb76190a.json', SCOPES)[0]
 
@@ -61,10 +61,11 @@ bot_api = LineBotApi(api['line_access_token'])  # インスタンス化
 def start_video_chat(window):
     start_time = datetime.datetime.now() + datetime.timedelta(hours=-9)
     event = service.events().insert(calendarId=calendar_id, body=body, conferenceDataVersion=1).execute()
-    # meeting = client.meetings.create_meeting('Auto created 1', start_time=start_time.isoformat(), duration_min=60,
-    #                                          password='not-secure')
+    meeting = client.meetings.create_meeting('Auto created 1', start_time=start_time.isoformat(), duration_min=60,
+                                             password='not-secure')
     user_id = api['line_userid']  # IDを取得
-    messages = TextSendMessage(text=event['hangoutLink'])  # LINEに送付するメッセージ
+    print(meeting.join_url)
+    messages = TextSendMessage(text=meeting.join_url)  # LINEに送付するメッセージ
     bot_api.multicast([user_id], messages=messages)
-    window.load_url(event['hangoutLink'])
+    window.load_url(meeting.join_url)
 
