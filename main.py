@@ -7,7 +7,7 @@ window = webview.create_window(
     title='Screen',
     fullscreen=True
 )
-webview.start(channelObserver.channel_observer, window)
+webview.start(startVideoChat.start_video_chat, window)
 
 def eventKick(arg):
     print('kick' + str(arg))
