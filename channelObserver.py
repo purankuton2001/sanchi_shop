@@ -1,32 +1,102 @@
+import platform
+
 import serial
 import startVideoChat
 import time
-import clickImage
+import pyautogui
+import json
+import adminScreen
+import tkinter as tk
+from tkinter import ttk
+
+
+
 
 def channel_observer(window):
-    ser = serial.Serial('COM7', 9600, timeout=None)
     pre_val = 1
+    with open('setting.json', 'r') as f:
+        api = json.load(f)
+    if api['test_mode'] == True:
+        root = tk.Tk()
+        root.title("Channel Control")
+        root.geometry("300x200")
 
-    # 画像ファイルのパス
-    close_img_path = "image/closeButton.png"
-    finish_img_path = "image/finishButton.png"
+        frame = ttk.Frame(root)
+        frame.pack()
 
-    while True:
-        val_arduino = ser.readline()
-        val_decoded = int(repr(val_arduino.decode())[1:-5])
-        if val_decoded != pre_val and pre_val == 3:
-            clickImage.click_image(close_img_path)
-            time.sleep(0.5)
-            clickImage.click_image(finish_img_path)
-            time.sleep(3.0)
-        if val_decoded == 1:
-            window.load_url('https://www.youtube.com/embed/xxCzQ4ampo4?rel=0')
-            pre_val=1
-        elif val_decoded == 2:
-            window.load_url('https://www.google.com/')
-            pre_val=2
-        else:
-            startVideoChat.start_video_chat(window)
-            pre_val=3
+        current_chan_label = ttk.Label(frame, text="Current Channel: 1")
+        current_chan_label.pack()
 
-    ser.close()
+        def change_channel(channel):
+            nonlocal api, window, current_chan_label, pre_val
+            if pre_val == 3:
+                device = platform.system()
+                pyautogui.hotkey('escape')
+                time.sleep(0.05)
+                pyautogui.click()
+                if device == 'Windows':
+                    pyautogui.hotkey('alt', 'q')
+                elif device == 'macOS':
+                    pyautogui.hotkey('command', 'q')
+                time.sleep(0.5)
+                pyautogui.hotkey('enter')
+                time.sleep(3.0)
+            pre_val = channel
+
+            for index, value in enumerate(api["channel_setting"]):
+                if channel == index + 1:
+                    if value == 'zoom':
+                        startVideoChat.start_video_chat(window)
+                    else:
+                        window.load_url(value)
+                    current_chan_label.config(text="Current Channel: " + str(channel))
+
+        def on_key_release(event):
+            if event.char != '':
+                change_channel(int(event.char))
+
+        channel_1_btn = ttk.Button(frame, text="Channel 1", command=lambda: change_channel(1))
+        channel_1_btn.pack()
+        channel_2_btn = ttk.Button(frame, text="Channel 2", command=lambda: change_channel(2))
+        channel_2_btn.pack()
+        channel_3_btn = ttk.Button(frame, text="Channel 3", command=lambda: change_channel(3))
+        channel_3_btn.pack()
+
+        def quit_app():
+            nonlocal root, window
+            window.destroy()
+            root.destroy()
+        quit_btn = ttk.Button(frame, text="Quit", command=quit_app)
+        quit_btn.pack()
+
+        root.bind('<KeyRelease>', on_key_release)
+        root.lift()
+        root.mainloop()
+    else:
+        try:
+            ser = serial.Serial('COM7', 9600, timeout=None)
+            while True:
+                val_arduino = ser.readline()
+                current_chan = int(repr(val_arduino.decode())[1:-5])
+                if pre_val == 3:
+                    device = platform.system()
+                    if device == 'Windows':
+                        pyautogui.hotkey('alt', 'q')
+                    elif device == 'macOS':
+                        pyautogui.hotkey('command', 'q')
+                    time.sleep(0.5)
+                    pyautogui.hotkey('enter')
+                    time.sleep(3.0)
+                for index, value in enumerate(api["channel_setting"]):
+                    if current_chan == index+1:
+                        if value != 'zoom':
+                            window.load_url(value)
+                        else:
+                            startVideoChat.start_video_chat(window)
+                        pre_val = index+1
+
+                ser.close()
+        except:
+            window.destroy()
+            adminScreen.admin_screen(True)
+

@@ -6,23 +6,13 @@ from linebot.models import TextSendMessage
 from pyzoom import ZoomClient
 import datetime
 
-import googleapiclient.discovery
-import google.auth
 import time
 import clickImage
+import pyautogui
+import adminScreen
+import platform
 
 
-with open('secret.json', 'r') as f:
-    api = json.load(f)
-
-SCOPES = ['https://www.googleapis.com/auth/calendar']
-calendar_id = 'purankutonacount@gmail.com'
-# Googleの認証情報をファイルから読み込む
-credentials = google.auth.load_credentials_from_file('antenashop-0086fb76190a.json', SCOPES)[0]
-
-gapi_creds = credentials.with_subject(calendar_id)
-# APIと対話するためのResourceオブジェクトを構築する
-service = googleapiclient.discovery.build('calendar', 'v3', credentials=gapi_creds)
 
 body = {
     'conferenceData': {
@@ -49,19 +39,25 @@ body = {
 # 用意した予定を登録する
 
 
-client = ZoomClient(api["zoom_api_key"], api["zoom_api_secret"])
 
-bot_api = LineBotApi(api['line_access_token'])  # インスタンス化
 
 def start_video_chat(window):
-    start_time = datetime.datetime.now() + datetime.timedelta(hours=-9)
-    # event = service.events().insert(calendarId=calendar_id, body=body, conferenceDataVersion=1).execute()
-    meeting = client.meetings.create_meeting('Auto created 1', start_time=start_time.isoformat(), duration_min=60,
-                                             password='not-secure')
-    user_id = api['line_userid']  # IDを取得
-    messages = TextSendMessage(text=meeting.join_url)  # LINEに送付するメッセージ
-    bot_api.multicast([user_id], messages=messages)
-    window.load_url(meeting.join_url)
+    with open('setting.json', 'r') as f:
+        api = json.load(f)
+    try:
+        client = ZoomClient(api["api_setting"]["zoom_api_key"], api["api_setting"]["zoom_api_secret"])
+        bot_api = LineBotApi(api["api_setting"]['line_access_token'])  # インスタンス化
+        start_time = datetime.datetime.now() + datetime.timedelta(hours=-9)
+        meeting = client.meetings.create_meeting('Auto created 1', start_time=start_time.isoformat(), duration_min=60,
+                                                 password='not-secure')
+        user_id = api["api_setting"]['line_userid']  # IDを取得
+        messages = TextSendMessage(text=meeting.join_url)  # LINEに送付するメッセージ
+        bot_api.multicast([user_id], messages=messages)
+        window.load_url(meeting.join_url)
+    except:
+        print('channel')
+        window.destroy()
+        adminScreen.admin_screen(True)
     # 画像ファイルのパス
     open_img_path = "image/openButton.png"
     connect_audio_img_path = "image/connectAudioButton.png"
@@ -73,7 +69,11 @@ def start_video_chat(window):
     time.sleep(3.0)
     clickImage.click_image(connect_audio_img_path)
     time.sleep(1.0)
-    clickImage.click_image(maximize_img_path)
+    device = platform.system()
+    if device == 'Windows':
+        pyautogui.hotkey('alt','f')
+    elif device == 'macOS':
+        pyautogui.hotkey('command','shift','f')
 
 
 

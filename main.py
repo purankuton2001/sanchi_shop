@@ -1,12 +1,12 @@
 from communications import comm
+import startVideoChat
 import channelObserver
 import webview
+import adminScreen
 
-window = webview.create_window(
-    title='Screen',
-    fullscreen=True
-)
-webview.start(channelObserver.channel_observer, window)
+
+adminScreen.admin_screen()
+
 
 def eventKick(arg):
     print('kick' + str(arg))
