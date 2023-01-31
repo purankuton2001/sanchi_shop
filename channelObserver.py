@@ -74,7 +74,7 @@ def channel_observer(window):
         root.mainloop()
     else:
         try:
-            ser = serial.Serial('COM7', 9600, timeout=None)
+            ser = serial.Serial(api['serial_port'], 9600, timeout=None)
             while True:
                 val_arduino = ser.readline()
                 current_chan = int(repr(val_arduino.decode())[1:-5])

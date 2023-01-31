@@ -25,8 +25,8 @@ def replace_file(src, dst):
         shutil.copy(src, dst)
 
 
-def on_click_start(api_setting_entries, channel_setting_entries, api, checkbutton, root):
-    save_json(api_setting_entries, channel_setting_entries, api, checkbutton, root)
+def on_click_start(api_setting_entries, channel_setting_entries, api, checkbutton,serial_port, root):
+    save_json(api_setting_entries, channel_setting_entries, api, checkbutton,serial_port, root)
     window = webview.create_window(
         title='Screen',
         fullscreen=True
@@ -34,7 +34,7 @@ def on_click_start(api_setting_entries, channel_setting_entries, api, checkbutto
     webview.start(channelObserver.channel_observer, window)
 
 
-def save_json(api_setting_entries, channel_setting_entries, api, checkbutton, root):
+def save_json(api_setting_entries, channel_setting_entries, api, checkbutton, serial_port, root):
     for k, v in api_setting_entries.items():
         api["api_setting"][k] = v.get()
 
@@ -43,6 +43,7 @@ def save_json(api_setting_entries, channel_setting_entries, api, checkbutton, ro
         api["channel_setting"][index] = new_text if new_text else 'zoom'
 
     api["test_mode"] = checkbutton.get()
+    api["serial_port"] = serial_port.get()
     root.destroy()
     with open('setting.json', 'w') as f:
         json.dump(api, f, indent=4)
@@ -62,6 +63,7 @@ def admin_screen(error=None):
         api_setting_entries[k].insert(0, v)
 
     label_line_title = ttk.Label(root, text='Line')
+    label_serial_title = ttk.Label(root, text='シリアルポート')
     label_line_userid = ttk.Label(root, text='ユーザーID')
     label_line_access_token = ttk.Label(root, text='アクセストークン')
 
@@ -72,13 +74,14 @@ def admin_screen(error=None):
 
     checkbutton_test_mode_var = BooleanVar(value=api['test_mode'])
     checkbutton_test_mode = ttk.Checkbutton(root, text='テストモード', variable=checkbutton_test_mode_var)
-    checkbutton_test_mode.grid(row=11, column=2)
+
+    entry_serial = ttk.Entry(root, textvariable=StringVar())
+    entry_serial.insert(0, api['serial_port'])
 
     channel_setting_entries = []
     combo_boxes = []
     channel_mode = ["url", "zoom"]
     label_channel_title = ttk.Label(root, text='チャンネル設定')
-    label_channel_title.grid(row=6, column=0)
     replace_file_button = ttk.Button(root, text="オーディオに参加",
                                      command=lambda: replace_file(select_file(), "./image/connectAudioButton.png"))
     replace_file_button2 = ttk.Button(root, text="開く",
@@ -95,9 +98,13 @@ def admin_screen(error=None):
             combo_boxes[index].set("url")
 
         label_channel = ttk.Label(root, text=index + 1)
+
+        label_channel_title.grid(row=6, column=0)
+
         label_channel.grid(row=7 + index, column=0)
         combo_boxes[index].grid(row=7 + index, column=1)
         channel_setting_entries[index].grid(row=7 + index, column=2)
+
 
     def callback(e):
         for index, item in enumerate(combo_boxes):
@@ -113,25 +120,30 @@ def admin_screen(error=None):
 
     button_start = ttk.Button(root, text='スタート',
                               command=lambda: on_click_start(api_setting_entries, channel_setting_entries, api,
-                                                             checkbutton_test_mode_var, root))
+                                                             checkbutton_test_mode_var,entry_serial, root))
 
     # レイアウト
+
     label_line_title.grid(row=0, column=0)
     label_line_userid.grid(row=1, column=0)
     label_line_access_token.grid(row=2, column=0)
     api_setting_entries["line_userid"].grid(row=1, column=1)
     api_setting_entries["line_access_token"].grid(row=2, column=1)
 
+
     label_zoom_title.grid(row=3, column=0)
     click_image_title.grid(row=4, column=2)
     label_zoom_userid.grid(row=4, column=0)
-    label_zoom_access_token.grid(row=5, column=0)
     api_setting_entries["zoom_api_key"].grid(row=4, column=1)
+    label_zoom_access_token.grid(row=5, column=0)
     api_setting_entries["zoom_api_secret"].grid(row=5, column=1)
     replace_file_button.grid(row=5, column=2)
     replace_file_button2.grid(row=5, column=3)
 
-    button_start.grid(row=12, column=2)
+    label_serial_title.grid(row=11, column=0)
+    entry_serial.grid(row=11, column=1)
+    checkbutton_test_mode.grid(row=12, column=2)
+    button_start.grid(row=13, column=2)
     if error:
         messagebox.showinfo('エラー', 'エラーが発生したので停止しました。')
     root.mainloop()
