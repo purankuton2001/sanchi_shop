@@ -10,6 +10,6 @@
         "https://www.google.com/",
         "zoom"
     ],
-    "test_mode": false,
+    "test_mode": true,
     "serial_port": "COM8"
 }
