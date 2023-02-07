@@ -76,7 +76,7 @@ def channel_observer(window):
                 val_arduino = ser.readline()
                 print(str(val_arduino))
                 current_chan = int(repr(val_arduino.decode())[1:-5])
-                if pre_val == 3:
+                if api[pre_val] == 'zoom':
                     device = platform.system()
                     if device == 'Windows':
                         pyautogui.hotkey('alt', 'q')

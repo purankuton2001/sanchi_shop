@@ -18,6 +18,6 @@
         "zoom",
         "zoom"
     ],
-    "test_mode": false,
+    "test_mode": true,
     "serial_port": "/dev/cu.usbserial-144220"
 }
