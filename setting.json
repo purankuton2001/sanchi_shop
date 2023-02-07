@@ -2,8 +2,8 @@
     "api_setting": {
         "line_userid": "U4c0eec2e6982a05cdf3a7707625f944e",
         "line_access_token": "cXXdAsUoaqZVnhzW54yUjp0ctzNlv0GCDNCDv38WFTnNSeIwSuFTfXK6h+xkdLReMCNiL2zYjr6PMpAEV5Qn96/GiWFxmVei7rsjmoYdwidPjsz/X0OEhEaW95wz5fL9ET8oFcb+i7pUTls1PthfVAdB04t89/1O/w1cDnyilFU=",
-        "zoom_api_key": "wQGikfneSgOcxKsfioVklw",
-        "zoom_api_secret": "vVDVQus4y39IXbmbZ91s1tdEYL36bXTVcOdJ"
+        "zoom_api_key": "26-bzx7BQOCJmFaueiCJiQ",
+        "zoom_api_secret": "DNUtIgy0CFuLvr9EzRARoviGstCTBkOSqwob"
     },
     "channel_setting": [
         "https://www.youtube.com/embed/xxCzQ4ampo4?rel=0&autoplay=1&playsinline=1&loop=1",
@@ -19,5 +19,5 @@
         "zoom"
     ],
     "test_mode": false,
-    "serial_port": "COM8"
+    "serial_port": "/dev/cu.usbserial-144220"
 }
