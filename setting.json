@@ -6,10 +6,18 @@
         "zoom_api_secret": "vVDVQus4y39IXbmbZ91s1tdEYL36bXTVcOdJ"
     },
     "channel_setting": [
-        "https://www.youtube.com/embed/xxCzQ4ampo4?rel=0",
+        "https://www.youtube.com/embed/xxCzQ4ampo4?rel=0&autoplay=1&playsinline=1&loop=1",
         "https://www.google.com/",
+        "zoom",
+        "zoom",
+        "zoom",
+        "zoom",
+        "zoom",
+        "zoom",
+        "zoom",
+        "zoom",
         "zoom"
     ],
-    "test_mode": true,
+    "test_mode": false,
     "serial_port": "COM8"
 }

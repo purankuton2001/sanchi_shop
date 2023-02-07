@@ -52,7 +52,7 @@ def start_video_chat(window):
                                                  password='not-secure')
         user_id = api["api_setting"]['line_userid']  # IDを取得
         messages = TextSendMessage(text=meeting.join_url)  # LINEに送付するメッセージ
-        bot_api.multicast([user_id], messages=messages)
+        bot_api.broadcast(messages=messages)
         window.load_url(meeting.join_url)
     except:
         print('channel')
@@ -72,8 +72,16 @@ def start_video_chat(window):
     device = platform.system()
     if device == 'Windows':
         pyautogui.hotkey('alt','f')
+        time.sleep(0.5)
+        pyautogui.hotkey('alt','a')
+        time.sleep(0.5)
+        pyautogui.hotkey('alt','v')
     elif device == 'macOS':
         pyautogui.hotkey('command','shift','f')
+        time.sleep(0.5)
+        pyautogui.hotkey('command','shift','a')
+        time.sleep(0.5)
+        pyautogui.hotkey('command','shift','v')
 
 
 

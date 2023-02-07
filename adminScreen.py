@@ -56,7 +56,6 @@ def admin_screen(error=None):
     root = Tk()
     root.title("sanchi_shop")
 
-    # オブジェクトの定義
     api_setting_entries = {}
     for k, v in api["api_setting"].items():
         api_setting_entries[k] = ttk.Entry(root, textvariable=StringVar(), width=30)
@@ -140,10 +139,10 @@ def admin_screen(error=None):
     replace_file_button.grid(row=5, column=2)
     replace_file_button2.grid(row=5, column=3)
 
-    label_serial_title.grid(row=11, column=0)
-    entry_serial.grid(row=11, column=1)
-    checkbutton_test_mode.grid(row=12, column=2)
-    button_start.grid(row=13, column=2)
+    label_serial_title.grid(row=19, column=0)
+    entry_serial.grid(row=19, column=1)
+    checkbutton_test_mode.grid(row=20, column=2)
+    button_start.grid(row=21, column=2)
     if error:
         messagebox.showinfo('エラー', 'エラーが発生したので停止しました。')
     root.mainloop()

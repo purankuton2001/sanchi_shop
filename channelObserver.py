@@ -16,11 +16,12 @@ def channel_observer(window):
     pre_val = 1
     with open('setting.json', 'r') as f:
         api = json.load(f)
+
     if api['test_mode'] == True:
         root = tk.Tk()
         root.title("Channel Control")
         root.geometry("300x200")
-
+        root.attributes("-topmost", True)
         frame = ttk.Frame(root)
         frame.pack()
 
@@ -31,9 +32,6 @@ def channel_observer(window):
             nonlocal api, window, current_chan_label, pre_val
             if pre_val == 3:
                 device = platform.system()
-                pyautogui.hotkey('escape')
-                time.sleep(0.05)
-                pyautogui.click()
                 if device == 'Windows':
                     pyautogui.hotkey('alt', 'q')
                 elif device == 'macOS':
@@ -70,13 +68,13 @@ def channel_observer(window):
         quit_btn.pack()
 
         root.bind('<KeyRelease>', on_key_release)
-        root.lift()
         root.mainloop()
     else:
         try:
             ser = serial.Serial(api['serial_port'], 9600, timeout=None)
             while True:
                 val_arduino = ser.readline()
+                print(str(val_arduino))
                 current_chan = int(repr(val_arduino.decode())[1:-5])
                 if pre_val == 3:
                     device = platform.system()
@@ -95,8 +93,9 @@ def channel_observer(window):
                             startVideoChat.start_video_chat(window)
                         pre_val = index+1
 
-                ser.close()
-        except:
+            ser.close()
+        except Exception as e:
+            print(str(e))
             window.destroy()
             adminScreen.admin_screen(True)
 
