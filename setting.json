@@ -7,17 +7,17 @@
     },
     "channel_setting": [
         "https://www.youtube.com/embed/xxCzQ4ampo4?rel=0&autoplay=1&playsinline=1&loop=1",
-        "https://www.google.com/",
-        "zoom",
-        "zoom",
-        "zoom",
-        "zoom",
-        "zoom",
-        "zoom",
-        "zoom",
-        "zoom",
+        "https://www.youtube.com/embed/APn862uR0A8?rel=0&autoplay=1&playsinline=1&loop=1",
+        "https://www.youtube.com/embed/IJ8vFIQXzX8?rel=0&autoplay=1&playsinline=1&loop=1",
+        "https://www.youtube.com/embed/7H3IoRaJShg?rel=0&autoplay=1&playsinline=1&loop=1",
+        "https://www.youtube.com/embed/l5AnMxxhDrc?rel=0&autoplay=1&playsinline=1&loop=1",
+        "https://www.youtube.com/embed/LQuVk8Z4OY4?rel=0&autoplay=1&playsinline=1&loop=1",
+        "https://www.youtube.com/embed/Od2W0DVp8vs?rel=0&autoplay=1&playsinline=1&loop=1",
+        "https://www.youtube.com/embed/IZzLdYmKOHo?rel=0&autoplay=1&playsinline=1&loop=1",
+        "https://www.youtube.com/embed/EpZf6Z4m3j8?rel=0&autoplay=1&playsinline=1&loop=1",
+        "https://www.youtube.com/embed/py9Hbx90zDA?rel=0&autoplay=1&playsinline=1&loop=1",
         "zoom"
     ],
     "test_mode": false,
-    "serial_port": "/dev/cu.usbserial-144220"
+    "serial_port": "COM4"
 }
