@@ -61,7 +61,6 @@ def start_video_chat(window):
     # 画像ファイルのパス
     open_img_path = "image/openButton.png"
     connect_audio_img_path = "image/connectAudioButton.png"
-    maximize_img_path = "image/maximizeButton.png"
 
     # zoomアプリ起動
     time.sleep(1.0)

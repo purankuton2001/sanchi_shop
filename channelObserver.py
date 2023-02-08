@@ -30,7 +30,15 @@ def channel_observer(window):
 
         def change_channel(channel):
             nonlocal api, window, current_chan_label, pre_val
-            if pre_val == 3:
+            if api['channel_setting'][pre_val - 1] == 'zoom':
+                print(api['channel_setting'][pre_val - 1])
+                pyautogui.keyDown('alt')
+                time.sleep(0.5)
+                pyautogui.keyDown('tab')
+                time.sleep(0.5)
+                pyautogui.keyUp('alt')
+                pyautogui.keyUp('tab')
+
                 device = platform.system()
                 if device == 'Windows':
                     pyautogui.hotkey('alt', 'q')
@@ -76,7 +84,7 @@ def channel_observer(window):
                 val_arduino = ser.readline()
                 print(str(val_arduino))
                 current_chan = int(repr(val_arduino.decode())[1:-5])
-                if pre_val == 3:
+                if api['channel_setting'][pre_val - 1] == 'zoom':
                     device = platform.system()
                     if device == 'Windows':
                         pyautogui.hotkey('alt', 'q')
